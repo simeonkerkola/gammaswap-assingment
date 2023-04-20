@@ -30,6 +30,11 @@ const PoolCardHeaderStyles = styled.header`
     a {
       color: inherit;
       text-decoration: none;
+
+      &:hover {
+        color: #1c1c1c;
+        transition: all 0.2s ease-in-out;
+      }
     }
   }
 
