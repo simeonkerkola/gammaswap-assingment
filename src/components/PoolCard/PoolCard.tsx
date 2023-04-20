@@ -5,13 +5,18 @@ import PoolCardPrimaryDetails from './PoolCardPrimaryDetails';
 import PoolCardReserves from './PoolCardReserves';
 import PoolCardSecondaryDetails from './PoolCardSecondaryDetails';
 
-const StyledPoolCard = styled.section`
+const StyledPoolCard = styled.article`
   background: var(--white);
-  border: 1px solid var(--grey-2);
-  border-radius: 14px;
-  box-shadow: 0px 2px 4px 2px var(--grey-2);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
   padding: 2rem;
-  min-width: 328px;
+  width: 460px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+  }
 
   table {
     width: 100%;
@@ -37,11 +42,13 @@ const StyledPoolCard = styled.section`
 export default function PoolCard() {
   return (
     <StyledPoolCard>
-      <PoolCardHeader></PoolCardHeader>
-      <PoolCardPrimaryDetails></PoolCardPrimaryDetails>
-      <PoolCardReserves></PoolCardReserves>
-      <PoolCardSecondaryDetails></PoolCardSecondaryDetails>
-      <PoolCardFooter></PoolCardFooter>
+      <div className="content">
+        <PoolCardHeader></PoolCardHeader>
+        <PoolCardPrimaryDetails></PoolCardPrimaryDetails>
+        <PoolCardReserves></PoolCardReserves>
+        <PoolCardSecondaryDetails></PoolCardSecondaryDetails>
+        <PoolCardFooter></PoolCardFooter>
+      </div>
     </StyledPoolCard>
   );
 }

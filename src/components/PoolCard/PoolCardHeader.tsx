@@ -11,7 +11,7 @@ const PoolCardHeaderStyles = styled.header`
 
   h2 {
     font-size: 1.15rem;
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0.25rem;
   }
@@ -22,17 +22,16 @@ const PoolCardHeaderStyles = styled.header`
   }
 
   .links {
-    margin-bottom: 2.5rem;
     font-size: 0.8125rem;
     display: flex;
     gap: 0.25rem;
-    color: #969696;
+    color: var(--grey-3);
     a {
       color: inherit;
       text-decoration: none;
 
       &:hover {
-        color: #1c1c1c;
+        color: var(--black);
         transition: all 0.2s ease-in-out;
       }
     }

@@ -1,11 +1,50 @@
 import styled from '@emotion/styled';
 
+const PoolCardPrimaryDetailsStyles = styled.section`
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+
+  h2 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--grey-3);
+  }
+
+  .value {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .details {
+    font-size: 0.75rem;
+    color: var(--grey-3);
+  }
+
+  .percentage-change {
+    color: var(--green);
+    font-weight: 700;
+  }
+`;
+
 export default function PoolCardPrimaryDetails() {
   return (
-    <div>
-      <div>Liquidity</div>
-      <div>$23.00M</div>
-      <span>+2.38%</span> <span>24h Change</span>
-    </div>
+    <PoolCardPrimaryDetailsStyles>
+      <article>
+        <h2>Liquidity</h2>
+        <div className="value">$23.00M</div>
+        <div className="details">
+          <span className="percentage-change">+2.38%</span>{' '}
+          <span>24h Change</span>
+        </div>
+      </article>
+      <article>
+        <h2>APR</h2>
+        <div className="value">2.34%</div>
+        <div className="details">
+          <span>24h Performance</span>
+        </div>
+      </article>
+    </PoolCardPrimaryDetailsStyles>
   );
 }
