@@ -37,6 +37,10 @@ const PoolCardHeaderStyles = styled.header`
     }
   }
 
+  .dot {
+    color: var(--grey-2);
+  }
+
   .icons {
     display: flex;
     margin-bottom: 1.25rem;
@@ -60,7 +64,7 @@ export default function PoolCardHeader() {
           <a href="#">
             Uniswap v2 <IconExternalLink width="10" height="10" />
           </a>
-          <span>•</span>
+          <span className="dot">•</span>
           <a href="#">
             View on Etherscan <IconExternalLink width="10" height="10" />
           </a>

@@ -37,7 +37,7 @@ export default function PoolCardPrimaryDetails() {
         <h2>Liquidity</h2>
         <div className="value">$23.00M</div>
         <div className="details">
-          <span className="percentage-change">+2.38%</span>{' '}
+          <span className="percentage-change">+2.38%</span>
           <span>24h Change</span>
         </div>
       </article>
