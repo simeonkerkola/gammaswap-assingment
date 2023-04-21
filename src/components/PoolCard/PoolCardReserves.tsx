@@ -6,7 +6,7 @@ const PoolCardReservesStyles = styled.section`
 
   /* TODO: Duplicate and check font-size */
   h2 {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     color: var(--grey-3);
     margin-bottom: 0.5rem;
