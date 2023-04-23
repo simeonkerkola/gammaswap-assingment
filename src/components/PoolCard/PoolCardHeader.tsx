@@ -76,7 +76,7 @@ export default function PoolCardHeader() {
       </div>
       <div>
         <FavouritePoolsProvider account={account}>
-          <PoolCardFavouriteBtn></PoolCardFavouriteBtn>
+          <PoolCardFavouriteBtn poolId="0xBADA55"></PoolCardFavouriteBtn>
         </FavouritePoolsProvider>
       </div>
     </PoolCardHeaderStyles>

@@ -6,9 +6,14 @@ type Props = {
   account: string;
 };
 
+function getCacheKey(account: string): string {
+  const prefix = 'favourite-pools:';
+  return prefix + (account || 'unknown');
+}
+
 const [useFavouritePoolsContext, Provider] = createContext<{
-  removeFavouritePool: (poolAddress: string) => void;
-  addFavouritePool: (poolAddress: string) => void;
+  removeFromFavourites: (poolAddress: string) => void;
+  addToFavourites: (poolAddress: string) => void;
   favouritePools: string[];
 }>();
 
@@ -19,56 +24,55 @@ export function FavouritePoolsProvider({
   const [favouritePools, setFavouritePools] = useState<string[]>([]);
   const [prevAccount, setPrevAccount] = useState(account);
   const didMount = useRef(false);
-  const key = account || 'unknown';
+  const cacheKey = getCacheKey(account);
 
   if (account !== prevAccount) {
-    console.log('account changed', { account });
-    setInitialFavouritePools(account);
+    setInitialFavouritePools();
     setPrevAccount(account);
   }
   useEffect(() => {
-    console.log('set default state here');
-    setInitialFavouritePools(account);
+    setInitialFavouritePools();
   }, []);
 
   useEffect(() => {
     if (didMount.current) {
-      updateCachedFavouritePools(account, favouritePools);
+      updateCachedFavouritePools(favouritePools);
     }
   }, [favouritePools]);
 
-  function addFavouritePool(poolAddress: string) {
+  function addToFavourites(poolAddress: string) {
     setFavouritePools([...favouritePools, poolAddress]);
   }
 
-  function removeFavouritePool(poolAddress: string) {
+  function removeFromFavourites(poolAddress: string) {
     setFavouritePools(
       favouritePools.filter((address) => address !== poolAddress),
     );
   }
 
-  async function setInitialFavouritePools(account: string) {
+  async function setInitialFavouritePools() {
+    const unknownAccountKey = getCacheKey('');
+
     const [cachedAccountPools = [], cachedPools = []] = await getMany<
       string[] | undefined
-    >([account, 'unknown']);
-    console.log({ cachedAccountPools, account });
+    >([cacheKey, unknownAccountKey]);
 
-    // Remove unknown from cached pools
-    set('unknown', []);
+    // Remove cached pools of unknown account
+    set(unknownAccountKey, []);
 
-    // TODO: Remove duplicate pools
-    setFavouritePools([...cachedAccountPools, ...cachedPools]);
+    // Remove duplicate pools when merging
+    const uniquePools = [...new Set([...cachedAccountPools, ...cachedPools])];
+    setFavouritePools(uniquePools);
     didMount.current = true;
   }
 
-  async function updateCachedFavouritePools(account: string, pools: string[]) {
-    console.log('updateCachedFavouritePools', { account, pools });
-    set(key, pools);
+  async function updateCachedFavouritePools(pools: string[]) {
+    set(cacheKey, pools);
   }
 
   const value = {
-    removeFavouritePool,
-    addFavouritePool,
+    removeFromFavourites,
+    addToFavourites,
     favouritePools,
   };
   return <Provider value={value}>{children}</Provider>;
