@@ -3,6 +3,7 @@ import IconEth from '../Icons/IconEth';
 import IconUsdc from '../Icons/IconUsdc';
 import IconStar from '../Icons/IconStar';
 import IconExternalLink from '../Icons/IconExternalLink';
+import { useAccount } from '../../context/account-context';
 
 const PoolCardHeaderStyles = styled.header`
   display: flex;
@@ -52,6 +53,12 @@ const PoolCardHeaderStyles = styled.header`
 `;
 
 export default function PoolCardHeader() {
+  const { addFavouritePool } = useAccount();
+  function handleStarClick(): React.MouseEventHandler<HTMLButtonElement> {
+    console.log('click');
+    addFavouritePool('0xasdfasdfasdf');
+  }
+
   return (
     <PoolCardHeaderStyles>
       <div className="title">
@@ -71,7 +78,9 @@ export default function PoolCardHeader() {
         </div>
       </div>
       <div>
-        <IconStar width="20" height="20"></IconStar>
+        <button onClick={handleStarClick}>
+          <IconStar width="20" height="20"></IconStar>
+        </button>
       </div>
     </PoolCardHeaderStyles>
   );
