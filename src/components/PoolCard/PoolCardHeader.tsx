@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import IconEth from '../Icons/IconEth';
 import IconUsdc from '../Icons/IconUsdc';
-import IconStar from '../Icons/IconStar';
 import IconExternalLink from '../Icons/IconExternalLink';
+import PoolCardFavouriteBtn from './PoolCardFavouriteBtn';
+import { FavouritePoolsProvider } from '../../context/favourite-pools-context';
 import { useAccount } from '../../context/account-context';
 
 const PoolCardHeaderStyles = styled.header`
@@ -53,11 +54,7 @@ const PoolCardHeaderStyles = styled.header`
 `;
 
 export default function PoolCardHeader() {
-  const { addFavouritePool } = useAccount();
-  function handleStarClick(): React.MouseEventHandler<HTMLButtonElement> {
-    console.log('click');
-    addFavouritePool('0xasdfasdfasdf');
-  }
+  const { account } = useAccount();
 
   return (
     <PoolCardHeaderStyles>
@@ -78,9 +75,9 @@ export default function PoolCardHeader() {
         </div>
       </div>
       <div>
-        <button onClick={handleStarClick}>
-          <IconStar width="20" height="20"></IconStar>
-        </button>
+        <FavouritePoolsProvider account={account}>
+          <PoolCardFavouriteBtn></PoolCardFavouriteBtn>
+        </FavouritePoolsProvider>
       </div>
     </PoolCardHeaderStyles>
   );

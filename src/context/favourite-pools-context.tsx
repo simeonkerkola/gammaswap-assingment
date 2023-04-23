@@ -1,7 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
-import { set, getMany } from 'idb-keyval';
+import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import createContext from './createContext';
+import { getMany, set } from 'idb-keyval';
 
-export default function useFavouritePools(account: string) {
+type Props = {
+  account: string;
+};
+
+const [useFavouritePoolsContext, Provider] = createContext<{
+  removeFavouritePool: (poolAddress: string) => void;
+  addFavouritePool: (poolAddress: string) => void;
+  favouritePools: string[];
+}>();
+
+export function FavouritePoolsProvider({
+  children,
+  account,
+}: PropsWithChildren<Props>) {
   const [favouritePools, setFavouritePools] = useState<string[]>([]);
   const [prevAccount, setPrevAccount] = useState(account);
   const didMount = useRef(false);
@@ -41,6 +55,8 @@ export default function useFavouritePools(account: string) {
 
     // Remove unknown from cached pools
     set('unknown', []);
+
+    // TODO: Remove duplicate pools
     setFavouritePools([...cachedAccountPools, ...cachedPools]);
     didMount.current = true;
   }
@@ -50,9 +66,12 @@ export default function useFavouritePools(account: string) {
     set(key, pools);
   }
 
-  return {
-    favouritePools,
-    addFavouritePool,
+  const value = {
     removeFavouritePool,
+    addFavouritePool,
+    favouritePools,
   };
+  return <Provider value={value}>{children}</Provider>;
 }
+
+export const useFavouritePools = useFavouritePoolsContext;
