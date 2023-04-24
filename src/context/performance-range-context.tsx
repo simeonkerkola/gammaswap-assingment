@@ -1,37 +1,31 @@
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import createContext from './createContext';
 
-type PerformancePeriodKey =
-  | '24h'
-  | '7-days'
-  | '30-days'
-  | '3-months'
-  | '6-months'
-  | 'year';
+type PerformanceRangeKey = 1 | 7 | 30 | 90 | 180 | 365;
 
-type PerformancePeriod = {
+export type PerformanceRange = {
   textLong: string;
   textShort: string;
-  key: PerformancePeriodKey;
+  key: PerformanceRangeKey;
 };
 
-export const performancePeriods: PerformancePeriod[] = [
-  { textLong: '24h', textShort: '24h', key: '24h' },
-  { textLong: '7 days', textShort: '7d', key: '7-days' },
-  { textLong: '30 days', textShort: '30d', key: '30-days' },
-  { textLong: '3 months', textShort: '3m', key: '3-months' },
-  { textLong: '6 months', textShort: '6m', key: '6-months' },
-  { textLong: 'Year', textShort: '1y', key: 'year' },
+export const performanceRanges: PerformanceRange[] = [
+  { textLong: 'Last 24h', textShort: '24h', key: 1 },
+  { textLong: 'Last 7 days', textShort: '7d', key: 7 },
+  { textLong: 'Last 30 days', textShort: '30d', key: 30 },
+  { textLong: 'Last 3 months', textShort: '3m', key: 90 },
+  { textLong: 'Last 6 months', textShort: '6m', key: 180 },
+  { textLong: 'Last Year', textShort: '1y', key: 365 },
 ];
 
 const [usePerformanceRangeContext, Provider] = createContext<{
-  performanceRange: PerformancePeriod;
-  setPerformanceRange: React.Dispatch<React.SetStateAction<PerformancePeriod>>;
+  performanceRange: PerformanceRange;
+  setPerformanceRange: React.Dispatch<React.SetStateAction<PerformanceRange>>;
 }>();
 
 export function PerformanceRangeProvider({ children }: PropsWithChildren) {
-  const [performanceRange, setPerformanceRange] = useState<PerformancePeriod>(
-    performancePeriods[0],
+  const [performanceRange, setPerformanceRange] = useState<PerformanceRange>(
+    performanceRanges[0],
   );
   const value = {
     performanceRange,
