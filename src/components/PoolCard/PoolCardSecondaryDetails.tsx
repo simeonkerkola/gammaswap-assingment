@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { usePerformanceRange } from '../../context/performance-range-context';
 
 const PoolCardSecondaryDetailsStyles = styled.section`
   dl {
@@ -21,13 +22,14 @@ const PoolCardSecondaryDetailsStyles = styled.section`
 `;
 
 export default function PoolCardSecondaryDetails() {
+  const { performanceRange } = usePerformanceRange();
   return (
     <PoolCardSecondaryDetailsStyles>
       <dl>
-        <dt>24h Volume</dt>
+        <dt>{performanceRange.textShort} Volume</dt>
         <dd> $15,00M</dd>
 
-        <dt>24h Fees</dt>
+        <dt>{performanceRange.textShort} Fees</dt>
         <dd> $50,00</dd>
       </dl>
     </PoolCardSecondaryDetailsStyles>

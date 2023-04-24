@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { usePerformanceRange } from '../../context/performance-range-context';
 
 const PoolCardPrimaryDetailsStyles = styled.section`
   display: flex;
@@ -31,6 +32,8 @@ const PoolCardPrimaryDetailsStyles = styled.section`
 `;
 
 export default function PoolCardPrimaryDetails() {
+  const { performanceRange } = usePerformanceRange();
+
   return (
     <PoolCardPrimaryDetailsStyles>
       <article>
@@ -38,14 +41,14 @@ export default function PoolCardPrimaryDetails() {
         <div className="value">$23.00M</div>
         <div className="details">
           <span className="percentage-change">+2.38%</span>
-          <span>24h Change</span>
+          <span>{performanceRange.textShort} Change</span>
         </div>
       </article>
       <article>
         <h2>APR</h2>
         <div className="value">2.34%</div>
         <div className="details">
-          <span>24h Performance</span>
+          <span>{performanceRange.textShort} Performance</span>
         </div>
       </article>
     </PoolCardPrimaryDetailsStyles>
