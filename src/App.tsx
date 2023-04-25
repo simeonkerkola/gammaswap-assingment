@@ -5,6 +5,7 @@ import PerformanceRangeSelect from './components/PerformanceRangeSelect';
 import PoolCard from './components/PoolCard/PoolCard';
 import { AccountProvider } from './context/account-context';
 import { PerformanceRangeProvider } from './context/performance-range-context';
+import IconArbitrum from './components/icons/IconArbitrum';
 
 const AppStyles = styled.div`
   max-width: 760px;
@@ -34,7 +35,14 @@ function App() {
           <header>
             <h1>Pools</h1>
             <PerformanceRangeSelect></PerformanceRangeSelect>
-            <Button border>Arbitrum</Button>
+            <Button
+              border
+              suffixIcon={
+                <IconArbitrum width="1.25rem" height="1.25rem"></IconArbitrum>
+              }
+            >
+              Arbitrum
+            </Button>
             <ConnectWallet></ConnectWallet>
           </header>
           <main>

@@ -28,6 +28,7 @@ const PoolCardPrimaryDetailsStyles = styled.section`
   .percentage-change {
     color: var(--green);
     font-weight: 700;
+    margin-right: 0.25rem;
   }
 `;
 

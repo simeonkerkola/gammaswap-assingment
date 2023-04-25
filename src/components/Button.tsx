@@ -7,6 +7,8 @@ type Props = {
   large?: boolean;
   primary?: boolean;
   border?: boolean;
+  suffixIcon?: React.ReactNode;
+  prefixIcon?: React.ReactNode;
 } & ComponentPropsWithoutRef<'button'>;
 
 const ButtonStyles = styled.button`
@@ -70,6 +72,14 @@ const ButtonStyles = styled.button`
     display: flex;
     align-items: center;
   }
+
+  .suffix-icon {
+    margin-left: 0.5rem;
+  }
+
+  .prefix-con {
+    margin-right: 0.5rem;
+  }
 `;
 
 const Button = forwardRef<HTMLButtonElement, Props>(function Button(
@@ -84,7 +94,18 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   );
   return (
     <ButtonStyles ref={ref} {...props} className={classes}>
-      <div className="content">{props.children}</div>
+      <div className="content">
+        {props.prefixIcon}
+        <div
+          style={{
+            marginLeft: props.prefixIcon ? '0.5rem' : '0',
+            marginRight: props.suffixIcon ? '0.5rem' : '0',
+          }}
+        >
+          {props.children}
+        </div>
+        {props.suffixIcon}
+      </div>
     </ButtonStyles>
   );
 });

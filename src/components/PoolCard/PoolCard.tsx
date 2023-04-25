@@ -10,7 +10,7 @@ const StyledPoolCard = styled.article`
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   padding: 2rem;
-  width: 460px;
+  width: 28.75rem;
 
   .content {
     display: flex;

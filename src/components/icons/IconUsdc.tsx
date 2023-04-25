@@ -1,4 +1,4 @@
-export default function IconETH(props: JSX.IntrinsicElements['svg']) {
+export default function IconUsdc(props: JSX.IntrinsicElements['svg']) {
   return (
     <svg
       viewBox="0 0 24 24"

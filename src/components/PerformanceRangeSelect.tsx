@@ -44,11 +44,14 @@ const PerformanceRangeSelectStyles = styled.div`
 
   .icon-info {
     margin-left: 0.5rem;
+    width: 0.625rem;
+    height: 0.625rem;
   }
 
   .btn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
     transition: all 0.2s ease-in-out;
-    margin-left: 0.75rem;
   }
   .btn-icon-rotate {
     transform: rotate(180deg);
@@ -96,15 +99,18 @@ function PerformanceRangeSelect() {
     <PerformanceRangeSelectStyles>
       <label {...getLabelProps()}>
         Performance Range
-        <IconInfo className="icon-info" width="10" height="10"></IconInfo>
+        <IconInfo className="icon-info"></IconInfo>
       </label>
-      <Button border {...getToggleButtonProps()}>
+      <Button
+        border
+        {...getToggleButtonProps()}
+        suffixIcon={
+          <IconChevron
+            className={cx({ 'btn-icon': true, 'btn-icon-rotate': isOpen })}
+          ></IconChevron>
+        }
+      >
         <span>{selectedItem ? selectedItem.textShort : 'Select'}</span>
-        <IconChevron
-          className={cx({ 'btn-icon': true }, { 'btn-icon-rotate': isOpen })}
-          width="20"
-          height="20"
-        ></IconChevron>
       </Button>
 
       <ul {...getMenuProps()} style={{ display: isOpen ? 'initial' : 'none' }}>
@@ -117,9 +123,7 @@ function PerformanceRangeSelect() {
             >
               <span>{item.textLong}</span>
               {selectedItem === item && (
-                <span>
-                  <IconCheck width="16" height="16"></IconCheck>
-                </span>
+                <IconCheck width="16" height="16"></IconCheck>
               )}
             </li>
           ))}
