@@ -24,9 +24,9 @@ const PoolCardFavouriteBtnStyles = styled.button<{ isFavourite: boolean }>`
 
 type Props = {
   poolId: string;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function PoolCardFavouriteBtn({ poolId }: Props) {
+export default function PoolCardFavouriteBtn({ poolId, ...props }: Props) {
   const { favouritePools, removeFromFavourites, addToFavourites } =
     useFavouritePools();
 
@@ -44,6 +44,7 @@ export default function PoolCardFavouriteBtn({ poolId }: Props) {
     <PoolCardFavouriteBtnStyles
       isFavourite={isFavourite}
       onClick={handleStarClick}
+      {...props}
     >
       <IconStar width="24" height="24"></IconStar>
     </PoolCardFavouriteBtnStyles>

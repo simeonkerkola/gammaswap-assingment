@@ -51,6 +51,15 @@ const PoolCardHeaderStyles = styled.header`
       margin-left: -3px;
     }
   }
+
+  .icon-link {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  .favourite-btn {
+    align-self: flex-start;
+  }
 `;
 
 export default function PoolCardHeader() {
@@ -66,19 +75,21 @@ export default function PoolCardHeader() {
         <h2>ETH / USDC</h2>
         <div className="links">
           <a href="#">
-            Uniswap v2 <IconExternalLink width="10" height="10" />
+            Uniswap v2 <IconExternalLink className="icon-link" />
           </a>
           <span className="dot">•</span>
           <a href="#">
-            View on Etherscan <IconExternalLink width="10" height="10" />
+            View on Etherscan <IconExternalLink className="icon-link" />
           </a>
         </div>
       </div>
-      <div>
-        <FavouritePoolsProvider account={account}>
-          <PoolCardFavouriteBtn poolId="0xBADA55"></PoolCardFavouriteBtn>
-        </FavouritePoolsProvider>
-      </div>
+
+      <FavouritePoolsProvider account={account}>
+        <PoolCardFavouriteBtn
+          className="favourite-btn"
+          poolId="0xBADA55"
+        ></PoolCardFavouriteBtn>
+      </FavouritePoolsProvider>
     </PoolCardHeaderStyles>
   );
 }
