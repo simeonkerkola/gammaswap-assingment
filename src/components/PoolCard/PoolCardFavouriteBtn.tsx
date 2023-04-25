@@ -7,8 +7,11 @@ const PoolCardFavouriteBtnStyles = styled.button<{ isFavourite: boolean }>`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
+
+  .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 
  .icon-star-background {
    transition: all .2s ease-in-out;
@@ -32,7 +35,7 @@ export default function PoolCardFavouriteBtn({ poolId, ...props }: Props) {
 
   const isFavourite = favouritePools.includes(poolId);
 
-  function handleStarClick(): void {
+  function handleStarClick() {
     if (isFavourite) {
       removeFromFavourites(poolId);
     } else {
@@ -46,7 +49,7 @@ export default function PoolCardFavouriteBtn({ poolId, ...props }: Props) {
       onClick={handleStarClick}
       {...props}
     >
-      <IconStar width="24" height="24"></IconStar>
+      <IconStar className="icon"></IconStar>
     </PoolCardFavouriteBtnStyles>
   );
 }

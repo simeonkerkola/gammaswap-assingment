@@ -36,7 +36,7 @@ const PerformanceRangeSelectStyles = styled.div`
     background: var(--white);
     padding: 0.75rem;
     list-style: none;
-    min-width: 14.0625rem;
+    min-width: 14rem;
     border: 1px solid var(--grey-2);
     border-radius: 12px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06);
@@ -95,22 +95,20 @@ function PerformanceRangeSelect() {
     defaultSelectedItem: performanceRange,
   });
 
+  const sufficIcon = (
+    <IconChevron
+      className={cx({ 'btn-icon': true, 'btn-icon-rotate': isOpen })}
+    ></IconChevron>
+  );
+
   return (
     <PerformanceRangeSelectStyles>
       <label {...getLabelProps()}>
         Performance Range
         <IconInfo className="icon-info"></IconInfo>
       </label>
-      <Button
-        border
-        {...getToggleButtonProps()}
-        suffixIcon={
-          <IconChevron
-            className={cx({ 'btn-icon': true, 'btn-icon-rotate': isOpen })}
-          ></IconChevron>
-        }
-      >
-        <span>{selectedItem ? selectedItem.textShort : 'Select'}</span>
+      <Button border {...getToggleButtonProps()} suffixIcon={sufficIcon}>
+        <span>{selectedItem ? selectedItem.textShort : 'Select range'}</span>
       </Button>
 
       <ul {...getMenuProps()} style={{ display: isOpen ? 'initial' : 'none' }}>

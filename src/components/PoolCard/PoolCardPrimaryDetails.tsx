@@ -6,7 +6,6 @@ const PoolCardPrimaryDetailsStyles = styled.section`
   flex-direction: row;
   gap: 4rem;
 
-  /* TODO: duplicate */
   h2 {
     font-size: 0.8125rem;
     font-weight: 500;
@@ -19,7 +18,6 @@ const PoolCardPrimaryDetailsStyles = styled.section`
     margin-bottom: 0.25rem;
   }
 
-  /* TODO: duplicate */
   .details {
     font-size: 0.8125rem;
     color: var(--grey-3);

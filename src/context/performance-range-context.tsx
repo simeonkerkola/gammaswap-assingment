@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import createContext from './createContext';
 
 type PerformanceRangeKey = 1 | 7 | 30 | 90 | 180 | 365;

@@ -12,37 +12,17 @@ const StyledPoolCard = styled.article`
   padding: 2rem;
   width: 28.75rem;
 
-  .content {
+  .card-content {
     display: flex;
     flex-direction: column;
     row-gap: 2.5rem;
-  }
-
-  table {
-    width: 100%;
-  }
-
-  caption {
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid var(--black);
-    padding-bottom: 0.7rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.75rem;
-    color: var(--grey-3);
   }
 `;
 
 export default function PoolCard() {
   return (
     <StyledPoolCard>
-      <div className="content">
+      <div className="card-content">
         <PoolCardHeader></PoolCardHeader>
         <PoolCardPrimaryDetails></PoolCardPrimaryDetails>
         <PoolCardReserves></PoolCardReserves>

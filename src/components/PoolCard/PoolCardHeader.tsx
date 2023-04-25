@@ -43,11 +43,15 @@ const PoolCardHeaderStyles = styled.header`
     color: var(--grey-2);
   }
 
-  .icons {
+  .pool-token-icons {
     display: flex;
     margin-bottom: 1.25rem;
+  }
+  .pool-token-icon {
+    width: 2.5rem;
+    height: 2.5rem;
 
-    svg:not(:first-of-type) {
+    &:not(:first-of-type) {
       margin-left: -3px;
     }
   }
@@ -65,12 +69,14 @@ const PoolCardHeaderStyles = styled.header`
 export default function PoolCardHeader() {
   const { account } = useAccount();
 
+  const poolId = '0xbada55bada55bada55bada55bada55';
+
   return (
     <PoolCardHeaderStyles>
       <div className="title">
-        <div className="icons">
-          <IconEth width="40" height="40"></IconEth>
-          <IconUsdc width="40" height="40"></IconUsdc>
+        <div className="pool-token-icons">
+          <IconEth className="pool-token-icon"></IconEth>
+          <IconUsdc className="pool-token-icon"></IconUsdc>
         </div>
         <h2>ETH / USDC</h2>
         <div className="links">
@@ -87,7 +93,7 @@ export default function PoolCardHeader() {
       <FavouritePoolsProvider account={account}>
         <PoolCardFavouriteBtn
           className="favourite-btn"
-          poolId="0xBADA55"
+          poolId={poolId}
         ></PoolCardFavouriteBtn>
       </FavouritePoolsProvider>
     </PoolCardHeaderStyles>

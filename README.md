@@ -1,4 +1,4 @@
-# Setup
+# Gammaswap Assignment
 
 Install packages: `npm install`
 

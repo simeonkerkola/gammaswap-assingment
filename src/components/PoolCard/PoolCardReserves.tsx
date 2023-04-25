@@ -35,7 +35,7 @@ const PoolCardReservesStyles = styled.section`
       flex-grow: 1;
     }
 
-    .token-1 {
+    .token-1-weight {
       background: linear-gradient(
         270deg,
         #141414 0%,
@@ -43,7 +43,7 @@ const PoolCardReservesStyles = styled.section`
       );
     }
 
-    .token-2 {
+    .token-2-weight {
       background: linear-gradient(
         270deg,
         rgba(38, 161, 123, 0.24) 0%,
@@ -58,8 +58,8 @@ export default function PoolCardReserves() {
     <PoolCardReservesStyles>
       <h2>Reserves</h2>
       <div className="pool-tokens-weight-bar">
-        <div className="pool-token-weight token-1"></div>
-        <div className="pool-token-weight token-2"></div>
+        <div className="pool-token-weight token-1-weight"></div>
+        <div className="pool-token-weight token-2-weight"></div>
       </div>
       <div className="pool-token-amounts">
         <div>

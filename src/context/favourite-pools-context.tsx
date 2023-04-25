@@ -34,9 +34,10 @@ export function FavouritePoolsProvider({
     setInitialFavouritePools();
   }, []);
 
+  // Everytime favouritePools changes, update cache
   useEffect(() => {
     if (didMount.current) {
-      updateCachedFavouritePools(favouritePools);
+      set(cacheKey, favouritePools);
     }
   }, [favouritePools]);
 
@@ -53,21 +54,19 @@ export function FavouritePoolsProvider({
   async function setInitialFavouritePools() {
     const unknownAccountKey = getCacheKey('');
 
+    // Get cached pools of current account and unknown account
     const [cachedAccountPools = [], cachedPools = []] = await getMany<
       string[] | undefined
     >([cacheKey, unknownAccountKey]);
 
-    // Remove cached pools of unknown account
-    set(unknownAccountKey, []);
-
     // Remove duplicate pools when merging
     const uniquePools = [...new Set([...cachedAccountPools, ...cachedPools])];
     setFavouritePools(uniquePools);
-    didMount.current = true;
-  }
 
-  async function updateCachedFavouritePools(pools: string[]) {
-    set(cacheKey, pools);
+    // Remove cached pools of unknown account
+    set(unknownAccountKey, []);
+
+    didMount.current = true;
   }
 
   const value = {
